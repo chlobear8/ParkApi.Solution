@@ -16,9 +16,16 @@ namespace ParkApi.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get()
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string name)
     {
-      return await _db.Park.ToListAsync();
+      IQueryable<Park> query = _db.Park.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name == name);
+      }
+
+      return await query.ToListAsync();
     }
 
     [HttpGet("{id}")]
@@ -80,7 +87,7 @@ namespace ParkApi.Controllers
     public async Task<IActionResult> DeletePark(int id)
     {
       Park park = await _db.Park.FindAsync(id);
-      if (park -- null)
+      if (park == null)
       {
         return NotFound();
       }
