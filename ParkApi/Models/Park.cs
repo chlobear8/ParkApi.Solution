@@ -11,6 +11,6 @@ namespace ParkApi.Models
     [Required]
     public string State { get; set; }
     [Required]
-    public bool? National { get; set; }
+    public bool? National { get; set; } = null;
   }
 }
