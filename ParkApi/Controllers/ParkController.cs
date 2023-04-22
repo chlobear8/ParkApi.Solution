@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ParkApi.Models;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace ParkApi.Controllers
 {
   [Route("api/v{version:apiVersion}/[controller]")]
   [ApiController]
-  [ApiVersion("1.0")]//existing version
-  [ApiVersion("2.0")]//new version
+  //[ApiVersion("1.0")]//existing version
+  //[ApiVersion("2.0")]//new version
   
   public class ParkController : ControllerBase
   {
@@ -18,17 +19,14 @@ namespace ParkApi.Controllers
       _db = db;
     }
 
-    [HttpGet]
-    public IActionResult Get( ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Version = apiVersion.ToString() });
+    // [HttpGet]
+    // public IActionResult Get( ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Version = apiVersion.ToString() });
 
-    [HttpGet, MapToApiVersion( "2.0" )]
-    public string GetV2( ApiVersion apiVersion) => "Version" + apiVersion;
+    // [HttpGet, MapToApiVersion( "2.0" )]
+    // public string GetV2( ApiVersion apiVersion) => "Version" + apiVersion;
 
-    [HttpGet( "{id:int}" )]
-    public IActionResult Get( int id, ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Id = id });
-
-    [HttpPost]
-    public IActionResult Post( ApiVersion apiVersion) => CreatedAtAction( nameof( Get ), new { id = 42 }, null );
+    // [HttpGet( "{id:int}" )]
+    // public IActionResult Get( int id, ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Id = id });
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, bool? national)
@@ -65,6 +63,9 @@ namespace ParkApi.Controllers
 
       return park;
     }
+
+    // [HttpPost]
+    // public IActionResult Post( ApiVersion apiVersion) => CreatedAtAction( nameof( Get ), new { id = 42 }, null );
 
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
