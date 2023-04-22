@@ -4,8 +4,11 @@ using ParkApi.Models;
 
 namespace ParkApi.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/v{version:apiVersion}/[controller]")]
   [ApiController]
+  [ApiVersion("1.0")]//existing version
+  [ApiVersion("2.0")]//new version
+  
   public class ParkController : ControllerBase
   {
     private readonly ParkApiContext _db;
@@ -14,6 +17,18 @@ namespace ParkApi.Controllers
     {
       _db = db;
     }
+
+    [HttpGet]
+    public IActionResult Get( ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Version = apiVersion.ToString() });
+
+    [HttpGet, MapToApiVersion( "2.0" )]
+    public string GetV2( ApiVersion apiVersion) => "Version" + apiVersion;
+
+    [HttpGet( "{id:int}" )]
+    public IActionResult Get( int id, ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Id = id });
+
+    [HttpPost]
+    public IActionResult Post( ApiVersion apiVersion) => CreatedAtAction( nameof( Get ), new { id = 42 }, null );
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, bool? national)
