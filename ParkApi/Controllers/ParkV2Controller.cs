@@ -7,13 +7,13 @@ namespace ParkApi.Controllers
 {
   [ApiController]
   [Route("api/{v:apiVersion}/[controller]")]
-  [ApiVersion("1.0")]//existing version
+  [ApiVersion("2.0")]//new version
   
-  public class ParkController : ControllerBase
+  public class ParkV2Controller : ControllerBase
   {
     private readonly ParkApiContext _db;
 
-    public ParkController(ParkApiContext db)
+    public ParkV2Controller(ParkApiContext db)
     {
       _db = db;
     }
