@@ -11,7 +11,7 @@
 - Versioning
 
 ## Description
-This project is built to allow users to access and add State and National parks to a database. It can be found at <https://github.com/chlobear8/ParkApi.Solution>. Contact me with any questions, comments or concerns at <chloesporri@yahoo.com>.
+This project is built to allow users to access and add State and National parks to a database. Endpoints included are: get(version, query parameters and by ID), post, put(update) and delete. Parameters includedd in the query includes Name, State and a boolean for National. Versioning is also included. Both versions are currently the same but set up for "2.0" to be adjusted for future use. The option to map versioning in the same controller is also available but not suggested for future ease of deprication. It can be found at <https://github.com/chlobear8/ParkApi.Solution>. Contact me with any questions, comments or concerns at <chloesporri@yahoo.com>.
 
 ## Setup/Installation Requirements
 - Clone this repository to your desktop.
@@ -30,14 +30,9 @@ $ dotnet add package Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 ```
 - To import from MySql:
 - From Navigation>Administration window, select 'Data Import/Restore'.
-- In 'Import Options' select 'Import from Self-Contained File'. (chloe_oneil_many_to_many_authorize.sql)
+- In 'Import Options' select 'Import from Self-Contained File'. (ParkApi.sql)
 - Under 'Default Schema to be Imported To' select the 'New' button.
 - Navigate to the tab called 'Import Progress' and click 'Start Import'.
-- This should create a database on MySql with tables named flavors and treats.
-- The join table is named TreatFlavors.
-- flavors table should include columns ["FlavorId", "UserId" and "Name"].
-- treats table should include columns ["TreatId", "UserId" and "Name"].
-- TreatFlavor table should include columns ["TreatFlavorId", "TreatId" and "FlavorId"]
 - Start a development server with `$ dotnet run`.
 
 
