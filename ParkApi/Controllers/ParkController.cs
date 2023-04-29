@@ -7,7 +7,7 @@ namespace ParkApi.Controllers
 {
   [ApiController]
   [Route("api/{v:apiVersion}/[controller]")]
-  [ApiVersion("1.0")]//existing version
+  [ApiVersion("1.0")]
   
   public class ParkController : ControllerBase
   {
@@ -20,12 +20,6 @@ namespace ParkApi.Controllers
 
     [HttpGet("version")]
     public IActionResult GetVersion( ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Version = apiVersion.ToString() });
-
-    // [HttpGet, MapToApiVersion( "2.0" )]
-    // public string GetV2( ApiVersion apiVersion) => "Version" + apiVersion;
-
-    // [HttpGet( "{id:int}" )]
-    // public IActionResult Get( int id, ApiVersion apiVersion ) => Ok( new { Controller = GetType().Name, Id = id });
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, bool? national)
@@ -62,9 +56,6 @@ namespace ParkApi.Controllers
 
       return park;
     }
-
-    // [HttpPost]
-    // public IActionResult Post( ApiVersion apiVersion) => CreatedAtAction( nameof( Get ), new { id = 42 }, null );
 
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
