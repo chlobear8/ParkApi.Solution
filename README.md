@@ -28,17 +28,14 @@ $ dotnet add package Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 { "ConnectionStrings": {
         "DefaultConnection": "Server=localhost;Port=3306;database=[DATABASE-NAME];uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE]"} }
 ```
-- To import from MySql:
-- From Navigation>Administration window, select 'Data Import/Restore'.
-- In 'Import Options' select 'Import from Self-Contained File'. (ParkApi.sql)
-- Under 'Default Schema to be Imported To' select the 'New' button.
-- Navigate to the tab called 'Import Progress' and click 'Start Import'.
-- Start a development server with `$ dotnet run`.
-
+- Run `$ dotnet ef database update` after appsettings.json has been completed to recreate the database in MySql.
+- To see the documentation go to <>https://localhost:5001/swagger/index.html>, this will show all the endpoints listed.
+- Start a development server with `$ dotnet run`. 
+- `$dotnet watch run` will open swagger for you automatically.
 
 ## Known bugs
 
-No known bugs.
+Fetch error when trying to access V2 on swagger. WIP to BUGFIX
 
 ## License information
 Copyright 2023 Chloe ONeil
